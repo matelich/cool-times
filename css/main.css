@@ -1,9 +1,16 @@
 body {
-	background: #B7FFF6;
+	background-color: #B7FFF6;
+	background-image: url('../img/clockicon.png');
+	background-size: contain;
 }
 .title {
 	font-family: 'Zeyada', cursive;
 	font-size: 72px;
 	text-align: center;
 	color: #EAFF0A;
+}
+.clock {
+	width: 75%;
+	margin-left:10%;
+	background-color: #FFF
 }
