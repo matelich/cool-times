@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <head>
+    <meta charset="UTF-8"
+    >
     <!-- Project CSS files -->
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <!-- <link rel="stylesheet" href="css/flipclock.css"> -->
+    <link rel="stylesheet" type="text/css" href="css/flipclock.css"> 
 
     <!-- google analytics -->
     <script type="text/javascript">
@@ -21,9 +23,13 @@
 </head>
 <body>
 	<div class="title">Cool Times</div>
-	<div class="clock" id="mainclock"></div>
+	<div class="clock">
+        <div id="mainclock"></div>
+        <div id="timeinfo"></div>
+    </div>
 
 	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="js/flipclock.min.js" type="text/javascript"></script>
     <!-- will worry about flipclock later
     <script src="js/flipclock/libs/base.js" type="text/javascript"></script>
     <script src="js/flipclock/flipclock.js" type="text/javascript"></script>

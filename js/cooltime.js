@@ -1,4 +1,8 @@
 $(document).ready(function() {
+	var clock = new FlipClock($('#mainclock'), {
+		clockFace: 'TwelveHourClock'
+	});
+
 /*		var clock = $('#mainclock').FlipClock({
 			clockFace: 'TwelveHourClock'
 		});
@@ -12,13 +16,20 @@ $(document).ready(function() {
 	if(min < 10) { timetext += '0';}
 	timetext += min;
 	console.log( timetext );
-	var mainclock = document.getElementById("mainclock");
-	mainclock.innerHTML = timetext;
+
+	update();
+	window.setTimeout(function() { update(); window.setInterval(update, 60*1000); }, 61*1000-d.getSeconds()*1000-d.getMilliseconds())
+});
+
+function update()
+{
+	var d = new Date();
+	var timeinfo = document.getElementById("timeinfo");
 
 	//check same digits
 	var coolinfo = { type: "unknown"};
 	if(checkCoolness(d, coolinfo)) {
-		mainclock.innerHTML += "<br/>This is a cool time!  " + coolinfo.type;
+		timeinfo.innerHTML = "<br/>This is a cool time!  " + cleanOutput(coolinfo.type);
 	} else {
 		var time_til_coolness = 0;
 		while(true){
@@ -31,12 +42,20 @@ $(document).ready(function() {
 				var min = d.getMinutes();
 				if(min < 10) { timetext += '0';}
 				timetext += min;
-				mainclock.innerHTML += "<br/>The next cool time is "+timetext+" in "+time_til_coolness+" minutes!  " + coolinfo.type;
+				timeinfo.innerHTML = "<br/>The next cool time is "+timetext+" in "+time_til_coolness+" minutes!  " + cleanOutput(coolinfo.type);
 				break;
 			}
 		}
 	}
-});
+
+}
+function cleanOutput(coolequation)
+{
+	if(coolequation[0] == '0') {
+		return coolequation.substr(4);
+	}
+	return coolequation;
+}
 
 function checkCoolness(d, coolinfo)
 {

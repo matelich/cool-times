@@ -12,5 +12,6 @@ body {
 .clock {
 	width: 75%;
 	margin-left:10%;
-	background-color: #FFF
+	background-color: #FFF;
+	font-size: 36px;
 }
