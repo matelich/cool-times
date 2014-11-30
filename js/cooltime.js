@@ -85,10 +85,17 @@ function update()
 }
 function cleanOutput(coolequation)
 {
-	if(coolequation[0] == '0') {
-		return coolequation.substr(4);
+	var ret = coolequation;
+	if(ret[0] == '0') {
+		ret = ret.substr(2);
 	}
-	return coolequation;
+	if(ret[0] == '+') {
+		ret = ret.substr(2);
+	}
+	if(ret[0] == '-' && ret[1] == ' ') {
+		ret = '-'+ret.substr(2);
+	}
+	return ret;
 }
 
 function checkCoolness(d, coolinfo)
