@@ -100,6 +100,7 @@ function cleanOutput(coolequation)
 
 function checkCoolness(d, coolinfo)
 {
+	coolinfo.type = "";
 	var hours = d.getHours();
 	if(hours > 12) { hours = hours - 12; }
 	var min = d.getMinutes();
@@ -108,7 +109,21 @@ function checkCoolness(d, coolinfo)
 	var ho = hours % 10; //hours ones digit
 	var ht = Math.floor(hours / 10); //hours tens digit
 
-	//console.log("checking "+ht+ho+mt+mo);
+	//first, establish the coolest time of all
+	if(hours == 12 && min == 34) {
+		coolinfo.type = "The coolest time of all";
+		return true;		
+	}
+
+	//check sequential digits
+	//we need ht == 0 for sequential because we already checked 1234, until we do 24 hour clock
+	if(ht == 0) {
+		if( ho == mt-1 && mt == mo-1 ||
+			ho == mt+1 && mt == mo+1) {
+			coolinfo.type = "All of the digits are in order";
+			return true;
+		}
+	}
 	//check all digits the same
 	if(mo == mt) {
 		//in here, we know the minutes digits are the same
